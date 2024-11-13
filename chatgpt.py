@@ -27,9 +27,10 @@ def get_chatgpt_response(prompt, json_data):
         messages=[
             {"role": "system", "content": "You are an assistant for industrial workflow processing."},
             {"role": "user", "content": f"{prompt}. Here is the JSON data: {json.dumps(json_data)}"}
-        ]
+        ],
+        max_tokens=500  # Adjust token count as needed
     )
-    return response.choices[0].message["content"]
+    return response['choices'][0]['message']['content']
 
 # Streamlit App Layout
 st.title("Industrial Workflow Analyzer")
@@ -47,8 +48,11 @@ if uploaded_file:
     prompt = st.text_input("Ask ChatGPT for workflow insights, modifications, or generation suggestions:")
     if st.button("Send to ChatGPT"):
         if prompt:
-            response = get_chatgpt_response(prompt, workflow_data)
-            st.write("### ChatGPT Response:")
-            st.write(response)
+            try:
+                response = get_chatgpt_response(prompt, workflow_data)
+                st.write("### ChatGPT Response:")
+                st.write(response)
+            except Exception as e:
+                st.error(f"Error: {e}")
         else:
             st.error("Please enter a prompt to get a response from ChatGPT.")
