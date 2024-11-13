@@ -6,7 +6,7 @@ from openai import OpenAI
 
 # Configure the OpenAI API Key
 openai.api_key = st.secrets["OPENAI_API_KEY"]  # Add your API key to Streamlit secrets
-client = OpenAI
+client = OpenAI()
 
 def parse_workflow(json_data):
     # Function to parse and display workflow steps in a user-friendly way
