@@ -4,6 +4,7 @@ import openai  # For ChatGPT API calls
 
 # Configure the OpenAI API Key
 openai.api_key = st.secrets["OPENAI_API_KEY"]  # Add your API key to Streamlit secrets
+client = OpenAI(api_key=openai_api_key)
 
 def parse_workflow(json_data):
     # Function to parse and display workflow steps in a user-friendly way
@@ -22,7 +23,7 @@ def parse_workflow(json_data):
 
 def get_chatgpt_response(prompt, json_data):
     # Make a call to the ChatGPT API to process the workflow based on user prompt
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",  # Or "gpt-3.5-turbo" depending on your access
         messages=[
             {"role": "system", "content": "You are an assistant for industrial workflow processing."},
