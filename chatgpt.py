@@ -28,7 +28,7 @@ def get_chatgpt_response(prompt, json_data):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",  # Or "gpt-3.5-turbo" depending on your access
         messages=[
-            {"role": "system", "content": "You are an assistant for industrial workflow processing."},
+            #{"role": "system", "content": "You are an assistant for industrial workflow processing."},
             {"role": "user", "content": f"{prompt}. Here is the JSON data: {json.dumps(json_data)}"}
         ],
         max_tokens=500  # Adjust token count as needed
