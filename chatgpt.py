@@ -1,10 +1,12 @@
 import streamlit as st
 import json
 import openai  # For ChatGPT API calls
+from openai import OpenAI
+
 
 # Configure the OpenAI API Key
 openai.api_key = st.secrets["OPENAI_API_KEY"]  # Add your API key to Streamlit secrets
-client = OpenAI(api_key=openai_api_key)
+client = OpenAI
 
 def parse_workflow(json_data):
     # Function to parse and display workflow steps in a user-friendly way
