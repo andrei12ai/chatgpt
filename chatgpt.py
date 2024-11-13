@@ -23,7 +23,7 @@ def parse_workflow(json_data):
 def get_chatgpt_response(prompt, json_data):
     # Make a call to the ChatGPT API to process the workflow based on user prompt
     response = openai.chat.completions.create(
-        model="gpt-4",  # Or "gpt-3.5-turbo" depending on your access
+        model="gpt-3.5-turbo",  # Or "gpt-3.5-turbo" depending on your access
         messages=[
             {"role": "system", "content": "You are an assistant for industrial workflow processing."},
             {"role": "user", "content": f"{prompt}. Here is the JSON data: {json.dumps(json_data)}"}
